@@ -1,0 +1,38 @@
+[theme]
+base = "light"
+primaryColor = "#D89A62"
+backgroundColor = "#EDE3DA"
+secondaryBackgroundColor = "#F6EEE4"
+textColor = "#3A2E20"
+linkColor = "#C67D45"
+borderColor = "#DCC8B0"
+baseRadius = "20px"
+buttonRadius = "999px"
+showWidgetBorder = false
+showSidebarBorder = true
+
+# Semantic palette — warm clay tones
+greenColor = "#2E6B4F"
+greenBackgroundColor = "#E8F5E9"
+orangeColor = "#C67D45"
+orangeBackgroundColor = "#FFF3E0"
+redColor = "#A13048"
+redBackgroundColor = "#FFEBEE"
+blueColor = "#588A9B"
+violetColor = "#9B7B9E"
+grayColor = "#8A7F72"
+
+# Font — Inter from Google Fonts
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+headingFont = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+baseFontSize = 15
+baseFontWeight = 400
+headingFontSizes = ["32px", "24px", "20px", "18px", "16px", "14px"]
+headingFontWeights = [800, 700, 700, 600, 600, 500]
+
+[theme.sidebar]
+backgroundColor = "#F2E8DC"
+secondaryBackgroundColor = "#EDE3DA"
+textColor = "#3A2E20"
+borderColor = "#DCC8B0"
