@@ -1,0 +1,354 @@
+/* ------------------------------------------------------------------ */
+/*  Recruitment Agent — Full Visual Redesign                            */
+/*  Warm cream base · Frosted glass panels · Floating 3D orbs           */
+/* ------------------------------------------------------------------ */
+
+/* ---------- Warm cream background with dot-grid texture ------------ */
+body {
+    background-color: #F5F1E8;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background-image: repeating-radial-gradient(
+        circle at 0 0,
+        rgba(0, 0, 0, 0.06) 0px,
+        rgba(0, 0, 0, 0.06) 2px,
+        transparent 2px,
+        transparent 24px
+    );
+    background-size: 24px 24px;
+}
+
+/* ---------- Float animation for orbs -------------------------------- */
+@keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ---------- Glass card (tinted periwinkle/lavender) ---------------- */
+.glass-card {
+    background: linear-gradient(135deg, rgba(147,143,255,0.55), rgba(180,175,255,0.25));
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 60px rgba(108, 99, 255, 0.15);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.glass-card:hover {
+    box-shadow: 0 24px 72px rgba(108, 99, 255, 0.22);
+    transform: translateY(-2px);
+}
+
+/* ---------- Secondary/nested glass card (lighter, near-white) ------ */
+.glass-card-secondary {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 60px rgba(108, 99, 255, 0.15);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+/* ---------- Candidate card (extends glass-card) -------------------- */
+.candidate-card {
+    background: linear-gradient(135deg, rgba(147,143,255,0.55), rgba(180,175,255,0.25));
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 60px rgba(108, 99, 255, 0.15);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.candidate-card:hover {
+    transform: perspective(800px) rotateX(2deg) rotateY(-2deg) translateY(-4px);
+    box-shadow: 0 24px 72px rgba(108, 99, 255, 0.22);
+}
+
+/* ---------- Floating 3D Orbs (decorative) -------------------------- */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 5s ease-in-out infinite;
+}
+
+.orb-silver {
+    background: radial-gradient(circle at 30% 30%, #ffffff, #cfd3dc 60%, #9aa0ad 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+.orb-lavender {
+    background: radial-gradient(circle at 30% 30%, #d4d0ff, #b8b3ff 60%, #6c63ff 100%);
+    box-shadow: 0 8px 24px rgba(108, 99, 255, 0.25);
+}
+
+/* Individual orb sizes and positions — applied via inline style or classes */
+.orb-sm { width: 24px; height: 24px; }
+.orb-md { width: 48px; height: 48px; }
+.orb-lg { width: 64px; height: 64px; }
+.orb-xl { width: 90px; height: 90px; }
+
+/* Staggered animation delays */
+.orb-delay-1 { animation-delay: 0s; }
+.orb-delay-2 { animation-delay: 0.8s; }
+.orb-delay-3 { animation-delay: 1.6s; }
+.orb-delay-4 { animation-delay: 2.4s; }
+.orb-delay-5 { animation-delay: 3.2s; }
+.orb-delay-6 { animation-delay: 4.0s; }
+
+/* ---------- Chrome / tube ribbon (decorative) ---------------------- */
+.chrome-ribbon {
+    position: absolute;
+    width: 120px;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #e8e8ef, #b8bcc8, #e8e8ef);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+    transform: rotate(-12deg);
+}
+
+/* ---------- Verdict badges (on frosted pill) ----------------------- */
+.verdict-badge {
+    display: inline-block;
+    padding: 0.3em 1.1em;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.verdict-badge.interview {
+    background: rgba(63, 191, 143, 0.20);
+    color: #1E7A54;
+    border: 1px solid rgba(63, 191, 143, 0.30);
+    box-shadow: 0 0 16px rgba(63, 191, 143, 0.25);
+}
+
+.verdict-badge.hold {
+    background: rgba(232, 163, 61, 0.20);
+    color: #8A5A10;
+    border: 1px solid rgba(232, 163, 61, 0.30);
+    box-shadow: 0 0 16px rgba(232, 163, 61, 0.25);
+}
+
+.verdict-badge.not-a-fit {
+    background: rgba(226, 99, 122, 0.20);
+    color: #A13048;
+    border: 1px solid rgba(226, 99, 122, 0.30);
+    box-shadow: 0 0 16px rgba(226, 99, 122, 0.25);
+}
+
+/* ---------- Score pill --------------------------------------------- */
+.score-pill {
+    display: inline-block;
+    background: #1F2430;
+    color: white;
+    padding: 4px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Guardrail status pills (on frosted pill) -------------- */
+.guardrail-pill {
+    display: inline-block;
+    padding: 0.2em 0.85em;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: 0.35rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.guardrail-pill.pass {
+    background: rgba(63, 191, 143, 0.18);
+    color: #1E7A54;
+    border: 1px solid rgba(63, 191, 143, 0.25);
+}
+
+.guardrail-pill.fail {
+    background: rgba(226, 99, 122, 0.18);
+    color: #A13048;
+    border: 1px solid rgba(226, 99, 122, 0.25);
+}
+
+.guardrail-pill.pending {
+    background: rgba(232, 163, 61, 0.18);
+    color: #8A5A10;
+    border: 1px solid rgba(232, 163, 61, 0.25);
+}
+
+.guardrail-pill.active {
+    background: rgba(108, 99, 255, 0.18);
+    color: #4a44cc;
+    border: 1px solid rgba(108, 99, 255, 0.25);
+}
+
+/* ---------- Badge variants (for guardrail status in sidebar) ------- */
+.badge {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.badge-interview {
+    background: rgba(63, 191, 143, 0.20);
+    color: #1E7A54;
+    border: 1px solid rgba(63, 191, 143, 0.30);
+    box-shadow: 0 0 16px rgba(63, 191, 143, 0.25);
+}
+
+.badge-hold {
+    background: rgba(232, 163, 61, 0.20);
+    color: #8A5A10;
+    border: 1px solid rgba(232, 163, 61, 0.30);
+    box-shadow: 0 0 16px rgba(232, 163, 61, 0.25);
+}
+
+.badge-notfit {
+    background: rgba(226, 99, 122, 0.20);
+    color: #A13048;
+    border: 1px solid rgba(226, 99, 122, 0.30);
+    box-shadow: 0 0 16px rgba(226, 99, 122, 0.25);
+}
+
+.badge-flag {
+    background: rgba(226, 99, 122, 0.22);
+    color: #A13048;
+    border: 1px solid rgba(226, 99, 122, 0.30);
+}
+
+.badge-ok {
+    background: rgba(63, 191, 143, 0.22);
+    color: #1E7A54;
+    border: 1px solid rgba(63, 191, 143, 0.30);
+}
+
+/* ---------- Streamlit button overrides ----------------------------- */
+/* Primary action — solid dark pill */
+.stButton > button {
+    background: #1F2430;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 1.8rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    box-shadow: 0 4px 16px rgba(31, 36, 48, 0.20);
+}
+
+.stButton > button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 24px rgba(31, 36, 48, 0.30);
+    color: #ffffff;
+    background: #1F2430;
+}
+
+.stButton > button:active,
+.stButton > button:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 16px rgba(31, 36, 48, 0.25);
+}
+
+/* ---------- Secondary button (light glass pill) -------------------- */
+.stButton > button.secondary {
+    background: rgba(255, 255, 255, 0.55);
+    color: #1F2430;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.08);
+}
+
+.stButton > button.secondary:hover {
+    background: rgba(255, 255, 255, 0.75);
+    color: #1F2430;
+    box-shadow: 0 6px 24px rgba(108, 99, 255, 0.15);
+}
+
+/* ---------- Typography --------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    color: #1F2430;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+p, li, span, div {
+    color: #2d3040;
+}
+
+a {
+    color: #6C63FF;
+}
+
+/* ---------- Step line (trajectory) --------------------------------- */
+.step-line {
+    border-left: 3px solid #6C63FF;
+    padding-left: 14px;
+    margin-bottom: 10px;
+}
+
+/* ---------- Subtle scrollbar --------------------------------------- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(108, 99, 255, 0.2);
+    border-radius: 999px;
+}
+
+/* ---------- Sidebar overrides -------------------------------------- */
+section[data-testid="stSidebar"] .stMarkdown {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Streamlit app background override ---------------------- */
+.stApp {
+    background: transparent;
+}
